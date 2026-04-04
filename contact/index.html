@@ -19,5 +19,17 @@
         <a href="../contact/index.html">Contact</a>
         <a href="https://github.com/RocioSAguirre" target="_blank">GitHub</a>
     </nav>
+    <form action="/submit" method="POST" enctype="text/plain">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+
+        <label for="subject">Subject:</label>
+        <input id="subject" name="subject">
+
+        <label for="body">Message:</label>
+        <textarea id="body" name="body" placeholder="Write your message here"></textarea>
+      
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
