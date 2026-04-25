@@ -78,3 +78,19 @@ h1, h2, h3, h4, h5, h6 {
   right: 1em;
 }
 
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  gap: 10px;
+  text-align: center;
+}
+
+#profile-stats dt {
+  grid-row: 1; /* put all labels on top row */
+  font-weight: bold;
+}
+
+#profile-stats dd {
+  grid-row: 2; /* put all values on bottom row */
+  margin: 0;
+}

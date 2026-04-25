@@ -1,62 +1,74 @@
 [
     {
-        "title": "Lorem ipsum dolor sit.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta odio veniam ipsum unde recusandae accusantium, aliquid dolore velit excepturi voluptatem eos corporis quisquam, fuga culpa quibusdam expedita ad! Doloremque, impedit."
+      "title": "THRESHOLD (Code Blue) Climate Intelligence Platform",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Built a real-time climate crisis intelligence platform that predicts ecological tipping points using oceanographic data and machine learning. Integrated 20+ APIs including NOAA, NASA, and Scripps data, and developed funding pipelines using Stripe and Solana."
     },
     {
-        "title": "Alias incidunt ut ea!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Quam culpa nemo non est consectetur similique aliquam doloremque aspernatur aut ratione, harum, mollitia dolorem tempora recusandae suscipit ipsum nobis veritatis ut quisquam autem soluta odit eaque. Neque, quia consectetur!"
+      "title": "Power Outage Severity Prediction",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Analyzed U.S. power outage data to identify key risk factors and predict outage severity using statistical analysis, hypothesis testing, and data visualization. Explored relationships between climate regions, causes, and outage duration."
     },
     {
-        "title": "Dolorem modi quis itaque!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Hic laudantium esse at similique nostrum eveniet. Aperiam excepturi harum accusamus, alias quasi deleniti! Dolores enim non impedit cupiditate repudiandae sint eius voluptatem, rem molestiae nesciunt, officiis animi perferendis ducimus!"
+      "title": "SoCalGuessr Image Classification",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Developed a machine learning model using PyTorch to classify Southern California city images. Implemented CNN architectures and data augmentation to improve prediction accuracy."
     },
     {
-        "title": "Eveniet nulla consequatur officia.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Dignissimos, in maxime architecto vero recusandae voluptatem eius totam eveniet voluptates aut ratione! Veniam molestias unde exercitationem praesentium debitis quam nulla, deleniti maiores fugit adipisci consequatur saepe tenetur tempora ut!"
+      "title": "Grocery Store Food Processing Analysis",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Created data visualizations comparing food processing levels across major retailers using pandas and matplotlib. Identified non-obvious trends in food quality and processing levels."
     },
     {
-        "title": "Ipsum temporibus laudantium excepturi?",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Cumque, iusto necessitatibus! Cum modi facilis nostrum accusantium commodi porro saepe enim rem eos ab, voluptatum culpa error quas tempora impedit aliquam perspiciatis exercitationem id voluptates ducimus aspernatur adipisci sed."
+      "title": "Cache Performance Analysis (Row vs Column Traversal)",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Conducted performance experiments analyzing memory access patterns and cache efficiency. Demonstrated performance cliffs between row-major and column-major traversal using Numba and timing analysis."
     },
     {
-        "title": "Dolorem numquam obcaecati quas.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Veritatis minus asperiores sed fugiat ab quas iste velit, doloribus, esse, eum ea aliquam! Impedit excepturi sunt ipsam nobis earum veritatis quis consequatur, obcaecati dolor at nesciunt quibusdam, quod voluptatibus."
+      "title": "ASL Sign Language Classification Model",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Built a computer vision model to classify American Sign Language letters using neural networks and image preprocessing techniques."
     },
     {
-        "title": "Cum perferendis magni aperiam.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Obcaecati molestias excepturi numquam veritatis nesciunt, commodi mollitia asperiores voluptatum, reprehenderit voluptates sunt magnam cupiditate ut beatae officiis dolor quisquam! Perspiciatis, debitis et! Repellendus nisi asperiores assumenda rem, suscipit iure."
+      "title": "Unity Campus Map with GPS",
+      "year": "2025",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Developed an interactive 3D campus map in Unity with built-in GPS functionality to track user position in real time."
     },
     {
-        "title": "Ullam nemo mollitia iusto?",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Aliquam fugit modi dolore omnis exercitationem dicta reprehenderit. Voluptates, quisquam tenetur est exercitationem dolorem a rem inventore? Optio aliquid eius ex. Culpa nulla, repudiandae vero ipsum magni libero doloribus praesentium."
+      "title": "McDonald's Ordering System Recreation",
+      "year": "2025",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Recreated a digital ordering system inspired by McDonald's kiosks, focusing on UI/UX design and interactive user flows."
     },
     {
-        "title": "Commodi inventore enim aperiam!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Dolorum, porro molestias nihil saepe pariatur aspernatur illo unde qui illum suscipit minus veritatis deleniti commodi consequatur recusandae earum dicta eligendi quia adipisci ea accusamus, est tempora tempore! Voluptas, iusto!"
+      "title": "Personal Portfolio Website",
+      "year": "2026",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Designed and developed a personal portfolio website using HTML, CSS, and JavaScript with dynamic project rendering and API integration."
     },
     {
-        "title": "Veritatis alias eius dolor!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Minus ipsum, blanditiis eveniet, veritatis fugiat ratione facere quibusdam nesciunt voluptatibus ut accusantium. Earum, eius sequi velit ullam eum itaque accusantium necessitatibus mollitia debitis voluptatum, rerum nesciunt eaque iure officia!"
+      "title": "Instructional Materials for Statistics Course (COGS 14B)",
+      "year": "2024",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Created educational materials including problem sets, review guides, and explanations to support undergraduate statistics students."
     },
     {
-        "title": "Libero sapiente consectetur rerum?",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Explicabo, voluptatibus. Hic, commodi quisquam. Iure at optio deleniti eius corrupti tempora, error ducimus mollitia dolorum placeat accusamus magni exercitationem, asperiores minus illum modi? Eaque consequatur voluptatum facilis consequuntur corporis?"
+      "title": "Computer Refurbishing and IT Support",
+      "year": "2024",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Diagnosed and repaired computers, installed operating systems, and provided technical support while managing hardware upgrades and system performance."
     },
     {
-        "title": "Reprehenderit ullam repudiandae rerum!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Nulla tempore rem minus accusamus reiciendis ipsam quidem, non eligendi cum doloribus voluptate ex debitis. Officia consequatur commodi maiores accusantium eos. Natus eius repellendus, nobis et delectus a ad rem."
+      "title": "Kumon Student Progress Tracking System",
+      "year": "2023",
+      "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+      "description": "Tracked student learning progress and implemented individualized education plans to improve performance across a range of age groups."
     }
-]
+  ]
