@@ -94,3 +94,93 @@ h1, h2, h3, h4, h5, h6 {
   grid-row: 2; /* put all values on bottom row */
   margin: 0;
 }
+
+.project-year {
+  font-family: Baskerville, serif;
+  font-variant-numeric: oldstyle-nums;
+  color: color-mix(in oklch, canvasText 50%, canvas);
+  margin-top: 0.25em;
+}
+
+#projects-plot {
+  max-width: 20em;
+  margin-block: 2em;
+
+  overflow: visible;
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 1em;
+  padding: 1em;
+  margin-block: 2em;
+  border: 1px solid color-mix(in oklch, canvasText 20%, canvas);
+  border-radius: 0.5em;
+  list-style: none;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.swatch {
+  display: inline-block;
+  width: 0.8em;
+  aspect-ratio: 1 / 1;
+  background: var(--color);
+  border-radius: 50%;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: nowrap;
+}
+
+.chart-container .legend {
+  flex: 1;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: nowrap;
+}
+
+.chart-container .legend {
+  flex: 1;
+}
+
+.searchBar {
+  display: block;
+  width: 100%;
+  max-width: 30em;
+  padding: 0.75em 1em;
+  margin-block: 1em 2em;
+  font: inherit;
+  border: 1px solid color-mix(in oklch, canvasText 20%, canvas);
+  border-radius: 0.5em;
+}
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  transition: 300ms;
+}
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}

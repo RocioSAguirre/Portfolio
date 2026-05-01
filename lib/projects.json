@@ -1,9 +1,9 @@
 [
     {
       "title": "THRESHOLD (Code Blue) Climate Intelligence Platform",
-      "year": "2026",
       "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-      "description": "Built a real-time climate crisis intelligence platform that predicts ecological tipping points using oceanographic data and machine learning. Integrated 20+ APIs including NOAA, NASA, and Scripps data, and developed funding pipelines using Stripe and Solana."
+      "description": "Built a real-time climate crisis intelligence platform that predicts ecological tipping points using oceanographic data and machine learning. Integrated 20+ APIs including NOAA, NASA, and Scripps data, and developed funding pipelines using Stripe and Solana.",
+      "year": "2026"
     },
     {
       "title": "Power Outage Severity Prediction",
