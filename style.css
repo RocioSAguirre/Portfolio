@@ -13,6 +13,7 @@ body {
 nav {
   display: flex;
   --border-color: oklch(50% 10% 200 / 40%);
+  gap: 1rem;
 }
 
 nav a {
@@ -183,4 +184,119 @@ path {
   &:is(path) {
     fill: var(--color);
   }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 1.5rem;
+  margin-block: 1.5rem;
+}
+
+.stats dt {
+  grid-row: 1;
+  font-size: 0.75rem;
+  color: gray;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: bold;
+}
+
+.stats dd {
+  grid-row: 2;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.gridlines line {
+  stroke: lightgray;
+  stroke-opacity: 0.35;
+  shape-rendering: crispEdges;
+}
+
+.gridlines path {
+  stroke-width: 0;
+}
+
+.dots circle {
+  fill-opacity: 0.75;
+}
+
+.dots circle:hover {
+  fill-opacity: 1;
+}
+
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.75rem;
+  margin: 0;
+}
+
+dl.info dt {
+  margin: 0;
+  color: gray;
+  font-weight: normal;
+}
+
+dl.info dd {
+  margin: 0;
+  font-weight: bold;
+}
+
+.tooltip {
+  position: fixed;
+  top: 5em;
+  left: 1em;
+
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  z-index: 1000;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+dl.info {
+  /* ... other styles ... */
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 */
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+circle.selected {
+  fill: #ff6b6b;
 }
