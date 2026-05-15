@@ -68,7 +68,7 @@
     {
       "title": "BikeWatching",
       "year": "2026",
-      "image": "https://rociosaguirre.github.io/Portfolio/images/bikewatching.png",
+      "image": "../images/bikewatching.png",
       "url": "https://rociosaguirre.github.io/bikewatching/",
       "description": "Tracks the traffic and flow of bicycles in Boston."
     }
