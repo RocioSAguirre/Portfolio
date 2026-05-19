@@ -378,56 +378,36 @@ circle.selected {
   border-radius: 50%;
 }
 
-#scrolly-1 {
+#scrolly-1,
+#scrolly-2 {
   position: relative;
   display: flex;
   gap: 1rem;
+}
 
-  > * {
-    flex: 1;
-  }
+#scrolly-1 > *,
+#scrolly-2 > * {
+  flex: 1;
 }
 
 #scatter-story {
   position: relative;
 }
 
-#scatter-plot {
+#files-story {
+  position: relative;
+  padding-bottom: 60vh;
+}
+
+#scatter-plot,
+#files-plot {
   position: sticky;
   top: 0;
-  left: 0;
-  bottom: auto;
-  height: 50vh;
+  height: 80vh;
+  overflow: visible;
 }
 
-#scrolly-2 {
-  position: relative;
-  display: flex;
-  gap: 1rem;
-
-  > * {
-    flex: 1;
-  }
-}
-
-#files-story {
-  grid-column: 1;
-}
-
-#files-plot {
-  grid-column: 2;
-  position: sticky;
-  top: 1rem;
-  max-height: 90vh;
-  overflow: auto;
-}
-
-
+.step,
 .file-step {
-  margin-bottom: 1rem;
-
-}
-
-.step {
   margin-bottom: 1rem;
 }
