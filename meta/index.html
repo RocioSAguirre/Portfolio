@@ -17,27 +17,48 @@
     </h2>
     <div class="commit-filter">
         <label for="commit-progress">
-          Show commits until:
-          <input id="commit-progress" type="range" min="0" max="100" value="100" />
-          <time id="commit-time"></time>
+            Show commits until:
+            <input id="commit-progress" type="range" min="0" max="100" value="100" />
+            <time id="commit-time"></time>
         </label>
-      </div>
-      <dl id="files"> </dl>
+    </div>
+    
     <div id="stats"></div>
     <h2>
         Commits by Time of Day
     </h2>
-    <div id="chart"></div>
-    <dl id="commit-tooltip" class="info tooltip" hidden>
-        <dt>Commit</dt>
-        <dd>
-        <a href="" id="commit-link" target="_blank"></a>
-        </dd>
-    
-        <dt>Date</dt>
-        <dd id="commit-date"></dd>
-    </dl>
-    <p id="selection-count">No commits selected</p>
-    <dl id="language-breakdown" class="stats"></dl>
+    <div id="scrolly-1">
+        <div id="scatter-story">
+            <p>
+                This scatter plot shows when commits were made over time. Each circle
+                represents a commit, and larger circles represent commits with more lines.
+            </p>
+        </div>
+        <div id="scatter-plot">
+            <div id="chart"></div>
+            <dl id="commit-tooltip" class="info tooltip" hidden>
+                <dt>Commit</dt>
+                <dd>
+                    <a href="" id="commit-link" target="_blank"></a>
+                </dd>
+                <dt>Date</dt>
+                <dd id="commit-date"></dd>
+            </dl>
+            <p id="selection-count">No commits selected</p>
+            <dl id="language-breakdown" class="stats"></dl>
+        </div>
+    </div>
+    <h2>Files Changed Over Time</h2>
+
+<div id="scrolly-2">
+    <div id="files-story"></div>
+
+    <div id="files-plot">
+        <p>
+            Each dot represents one line of code. Dots are grouped by file and colored by file type.
+        </p>
+        <dl id="files"></dl>
+    </div>
+</div>
 </body>
 </html>

@@ -1,4 +1,5 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
 
 let xScale;
 let yScale;
@@ -49,16 +50,14 @@ function processCommits(data) {
       });
 
       return ret;
-    });
+    })
+    .sort((a, b) => d3.ascending(a.datetime, b.datetime));
 }
 
 function renderCommitInfo(data, commits) {
   d3.select('#stats').html('');
 
-  const dl = d3
-    .select('#stats')
-    .append('dl')
-    .attr('class', 'stats');
+  const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
   dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
   dl.append('dd').text(data.length);
@@ -177,7 +176,7 @@ function renderScatterPlot(data, commits) {
 
   dots
     .selectAll('circle')
-    .data(sortedCommits, (d) => d.id) 
+    .data(sortedCommits, (d) => d.id)
     .join('circle')
     .attr('cx', (d) => xScale(d.datetime))
     .attr('cy', (d) => yScale(d.hourFrac))
@@ -199,7 +198,6 @@ function renderScatterPlot(data, commits) {
     });
 
   createBrushSelector(svg);
-
 }
 
 function updateScatterPlot(data, commits) {
@@ -224,9 +222,12 @@ function updateScatterPlot(data, commits) {
 
   const svg = d3.select('#chart').select('svg');
 
-  xScale = xScale
-    .domain(d3.extent(commits, (d) => d.datetime))
-    .nice();
+  if (commits.length === 0) {
+    svg.select('g.dots').selectAll('circle').remove();
+    return;
+  }
+
+  xScale = xScale.domain(d3.extent(commits, (d) => d.datetime)).nice();
 
   const xAxis = d3.axisBottom(xScale);
 
@@ -393,6 +394,121 @@ function renderLanguageBreakdown(selection) {
   }
 }
 
+function updateFileDisplay(filteredCommits) {
+  let lines = filteredCommits.flatMap((d) => d.lines);
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
+
+  let files = d3
+    .groups(lines, (d) => d.file)
+    .map(([name, lines]) => {
+      return { name, lines };
+    })
+    .sort((a, b) => b.lines.length - a.lines.length);
+
+  const container = d3.select('#files');
+
+  const oldPositions = new Map();
+
+  container.selectAll(':scope > div').each(function (d) {
+    if (d) {
+      oldPositions.set(d.name, this.getBoundingClientRect().top);
+    }
+  });
+
+  let filesContainer = container
+    .selectAll(':scope > div')
+    .data(files, (d) => d.name)
+    .join((enter) =>
+      enter.append('div').call((div) => {
+        div.append('dt').append('code');
+        div.select('dt').append('small');
+        div.append('dd');
+      }),
+    );
+
+  filesContainer.order();
+
+  filesContainer.select('dt > code').text((d) => d.name);
+
+  filesContainer
+    .select('dt > small')
+    .text((d) => `${d.lines.length} lines`);
+
+  filesContainer
+    .select('dd')
+    .selectAll('div')
+    .data((d) => d.lines)
+    .join('div')
+    .attr('class', 'loc')
+    .attr('style', (d) => `--color: ${colors(d.type)}`);
+
+  filesContainer.each(function (d) {
+    const oldTop = oldPositions.get(d.name);
+    const newTop = this.getBoundingClientRect().top;
+
+    if (oldTop !== undefined) {
+      const deltaY = oldTop - newTop;
+
+      if (deltaY) {
+        this.animate(
+          [
+            { transform: `translateY(${deltaY}px)` },
+            { transform: 'translateY(0)' },
+          ],
+          {
+            duration: 500,
+            easing: 'ease',
+          },
+        );
+      }
+    }
+  });
+}
+
+function updateFilteredView(maxTime) {
+  commitMaxTime = maxTime;
+
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+
+  selectedTime.textContent = commitMaxTime.toLocaleString('en-US', {
+    dateStyle: 'long',
+    timeStyle: 'short',
+  });
+
+  updateScatterPlot(data, filteredCommits);
+  renderCommitInfo(data, filteredCommits);
+  updateFileDisplay(filteredCommits);
+}
+
+function updateFilesOnly(maxTime) {
+  const fileFilteredCommits = commits.filter((d) => d.datetime <= maxTime);
+  updateFileDisplay(fileFilteredCommits);
+}
+
+function onTimeSliderChange() {
+  commitProgress = Number(timeSlider.value);
+  commitMaxTime = timeScale.invert(commitProgress);
+
+  updateFilteredView(commitMaxTime);
+}
+
+function onScatterStepEnter(response) {
+  const commit = response.element.__data__;
+  const commitDate = commit.datetime;
+
+  updateFilteredView(commitDate);
+
+  commitProgress = timeScale(commitDate);
+  timeSlider.value = commitProgress;
+}
+
+function onFileStepEnter(response) {
+  const commit = response.element.__data__;
+  const commitDate = commit.datetime;
+
+  updateFilesOnly(commitDate);
+}
+
 let data = await loadData();
 let commits = processCommits(data);
 
@@ -411,68 +527,79 @@ commitMaxTime = timeScale.invert(commitProgress);
 const timeSlider = document.querySelector('#commit-progress');
 const selectedTime = document.querySelector('#commit-time');
 
-function onTimeSliderChange() {
-  commitProgress = Number(timeSlider.value);
-  commitMaxTime = timeScale.invert(commitProgress);
+d3.select('#scatter-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html(
+    (d, i) => `
+      On ${d.datetime.toLocaleString('en', {
+        dateStyle: 'full',
+        timeStyle: 'short',
+      })},
+      I made <a href="${d.url}" target="_blank">${
+        i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+      }</a>.
+      I edited ${d.totalLines} lines across ${
+        d3.rollups(
+          d.lines,
+          (D) => D.length,
+          (d) => d.file,
+        ).length
+      } files.
+      Then I looked over all I had made, and I saw that it was very good.
+    `,
+  );
 
-  selectedTime.textContent = commitMaxTime.toLocaleString('en-US', {
-    dateStyle: 'long',
-    timeStyle: 'short',
-  });
-
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
-  
-  updateScatterPlot(data, filteredCommits);
-  renderCommitInfo(data, filteredCommits);
-  updateFileDisplay(filteredCommits);
-}
-
-
-
-function updateFileDisplay(filteredCommits) {
-  let lines = filteredCommits.flatMap((d) => d.lines);
-  let colors = d3.scaleOrdinal(d3.schemeTableau10);
-
-
-  let files = d3
-    .groups(lines, (d) => d.file)
-    .map(([name, lines]) => {
-      return { name, lines };
-    })
-    .sort((a, b) => b.lines.length - a.lines.length);
-
-    let filesContainer = d3
-    .select('#files')
-    .selectAll('div')
-    .data(files, (d) => d.name)
-    .join((enter) =>
-      enter.append('div').call((div) => {
-        div.append('dt').append('code');
-        div.select('dt').append('small');
-        div.append('dd');
-      }),
-    );
-
-    filesContainer
-    .select('dt > code')
-    .text((d) => d.name);
-
-  filesContainer
-    .select('dt > small')
-    .text((d) => `${d.lines.length} lines`);
-
-  filesContainer
-    .select('dd')
-    .selectAll('div')
-    .data((d) => d.lines)
-    .join('div')
-    .attr('class', 'loc')
-    .attr('style', (d) => `--color: ${colors(d.type)}`);
-}
+d3.select('#files-story')
+  .selectAll('.file-step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'file-step')
+  .html(
+    (d, i) => `
+      On ${d.datetime.toLocaleString('en', {
+        dateStyle: 'full',
+        timeStyle: 'short',
+      })},
+      I made <a href="${d.url}" target="_blank">${
+        i > 0 ? 'another commit' : 'my first commit'
+      }</a>.
+      This commit brought the file visualization up to ${d.totalLines} more lines
+      across ${
+        d3.rollups(
+          d.lines,
+          (D) => D.length,
+          (d) => d.file,
+        ).length
+      } files.
+    `,
+  );
 
 renderCommitInfo(data, filteredCommits);
 renderScatterPlot(data, filteredCommits);
+updateFileDisplay(filteredCommits);
 
 timeSlider.addEventListener('input', onTimeSliderChange);
 onTimeSliderChange();
 
+const scatterScroller = scrollama();
+
+scatterScroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+    offset: 0.5,
+  })
+  .onStepEnter(onScatterStepEnter);
+
+const fileScroller = scrollama();
+
+fileScroller
+  .setup({
+    container: '#scrolly-2',
+    step: '#scrolly-2 .file-step',
+    offset: 0.5,
+  })
+  .onStepEnter(onFileStepEnter);

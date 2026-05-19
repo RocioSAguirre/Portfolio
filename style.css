@@ -377,3 +377,57 @@ circle.selected {
   background: var(--color);
   border-radius: 50%;
 }
+
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+
+  > * {
+    flex: 1;
+  }
+}
+
+#scatter-story {
+  position: relative;
+}
+
+#scatter-plot {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  height: 50vh;
+}
+
+#scrolly-2 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+
+  > * {
+    flex: 1;
+  }
+}
+
+#files-story {
+  grid-column: 1;
+}
+
+#files-plot {
+  grid-column: 2;
+  position: sticky;
+  top: 1rem;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+
+.file-step {
+  margin-bottom: 1rem;
+
+}
+
+.step {
+  margin-bottom: 1rem;
+}
